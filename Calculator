@@ -1,0 +1,39 @@
+package dich;
+import java.util.Scanner;
+public class program1 {
+    public static void main(String[] args) {
+    Scanner enter = new Scanner(System.in);
+    double num1, num2,result;
+    String simb ;
+        String answer = "yes" ;
+        while(answer.equals("yes")){
+        System.out.println("введите первое число");
+        num1 = enter.nextDouble();
+        System.out.println("введите второе число");
+        num2 = enter.nextDouble();
+        System.out.println("введите вид операции (+  -  *  /)");
+         simb = (String) enter.next();
+        if (simb.equals("+")) {
+            result = num1 + num2;
+            System.out.println("Результат сложения " + result);
+        } else if (simb.equals("-")) {
+            result = num1 - num2;
+            System.out.println("Результат вычитания " + result);
+        } else if (simb.equals("*")) {
+            result = num1 * num2;
+            System.out.println("Результат умножения " + result);
+        } else if (simb.equals("/")) {
+            if (num2 == 0) {
+                System.out.println("Ошибка");
+            } else {
+                result = num1 / num2;
+                System.out.println("Результат деления " + result);
+            }
+        }
+        System.out.println("Продолжить (yes/no) ");
+        answer = (String) enter.next();
+
+    }
+
+    }
+}
