@@ -1,6 +1,6 @@
 package dich;
 import java.util.Random;
-public class program3 {
+public class massive_task2 {
     public static void main(String[] args) {
         Random random = new Random();
         int max = 0, i, maxindex = 0;
