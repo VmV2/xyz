@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class dich_v_kvadrate {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        int c = 0;
         int turn = 0;
         boolean game=false;
         char[][] simb = new char[15][15];
@@ -49,7 +50,12 @@ while (game!=true) {
                     simb[q][i] = '|';
 
                 } else {
-                    simb[q][i] = ' ';
+
+                    if(simb[q][i] == ' ') {
+                        simb[q][i] = ' ';
+                    }
+
+
                 }
 
             }
@@ -72,20 +78,45 @@ while (game!=true) {
     }
 
 
-    for (int i = 1; i <= 5; i++) {
-        for (int q = 1; q <= 9; q++) {
-            if (simb[1][i] == simb[5][i] & simb[1][i] == simb[9][i] & simb[1][i]!=' '  ) {
-                 game = true;
+    //по вертикали
+    
+        for (int q = 0; q <= 2; q++) {
+            for (int i = 0; i <= 1; i++) {
+           if(simb[4*q+1][2*i+1]==simb[4*q+1][2*i+3] & simb[4*q+1][2*i+1]!=' '& simb[4*q+1][2*i+3]!=' '){
+                c =c+1;
+                if(c==2){
+                    game=true;
+                }
             }
-            if (simb[q][1] == simb[q][3] & simb[q][1] == simb[q][5] & simb[q][1]!=' ') {
-                 game = true;
+        }
+    }
+    for (int i = 0; i <= 2; i++) { //по горизонтали
+        for (int q = 0; q <= 1; q++) {
+            if(simb[4*q+1][2*i+1]==simb[4*q+5][2*i+1] & simb[4*q+1][2*i+1]!=' '& simb[4*q+5][2*i+1]!=' '){
+                c =c+1;
+                if(c==2){
+                    game=true;
+                }
             }
-            if (simb[1][1] == simb[5][3] & simb[1][1] == simb[9][5] & simb[1][1]!=' ') {
-                 game = true;
+        }
+    }
+    for (int i = 0; i <= 1; i++) {
+        for (int q = 0; q <= 1; q++) {
+            if(simb[4*q+1][2*i+1]==simb[4*q+5][2*i+3] & simb[4*q+1][2*i+1]!=' ' & simb[4*q+5][2*i+3]!=' '){
+                c =c+1;
+                if(c==2){
+                    game=true;
+                }
             }
-            if (simb[1][5] == simb[5][3] & simb[9][1] == simb[9][1] & simb[9][1]!=' ') {
-                 game = true;
-
+        }
+    }
+    for (int i = 0; i <= 1; i++) {
+        for (int q = 0; q <= 1; q++) {
+            if(simb[4*(2-q)+1][2*(2-i)+1]==simb[4*(2-q)+5][2*(2-i)+3] & simb[4*(2-q)+1][2*(2-i)+1]!=' '& simb[4*(2-q)+5][2*(2-i)+3]!=' '){
+                c =c+1;
+                if(c==2){
+                    game=true;
+                }
             }
         }
     }
@@ -97,4 +128,3 @@ while (game!=true) {
 }
     }
     }
-
