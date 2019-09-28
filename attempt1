@@ -9,122 +9,124 @@ public class dich_v_kvadrate {
         Scanner scan = new Scanner(System.in);
         int c = 0;
         int turn = 0;
-        boolean game=false;
+        boolean game = false;
         char[][] simb = new char[15][15];
         for (int i = 1; i <= 5; i++) {
             for (int q = 1; q <= 9; q++) {
-                simb[q][i]=' ';
+                simb[q][i] = ' ';
             }
 
         }
-while (game!=true) {
-    System.out.println("Введите координаты клетки по типу x/y ");
-    int x = scan.nextInt();
-    int y = scan.nextInt();
+        while (game != true) {
+            System.out.println("Введите координаты клетки по типу x/y ");
+            int x = scan.nextInt();
+            int y = scan.nextInt();
 
-    if (x < 0 || y < 0 || x > 2 || y > 2) {
-        System.out.println("Введите корректные координаты в диапозоне 0<x<2  0<y<2");
-        x = scan.nextInt();
-        y = scan.nextInt();
-    }
-    int xstr = 4 * x + 1;
-    int ystr = 2 * y + 1;
-    if (simb[xstr][ystr] != ' ') {
-        System.out.println("Место занято, введите по-нормальному!");
-        x = scan.nextInt();
-        y = scan.nextInt();
-    }
-
-
-
-    for (int i = 1; i <= 5; i++) {
-        for (int q = 1; q <= 9; q++) {
-            if (i == 2 || i == 4) {
-
-                simb[q][i] = '-';
+            if (x < 0 || y < 0 || x > 2 || y > 2) {
+                System.out.println("Введите корректные координаты в диапозоне 0<x<2  0<y<2");
+                x = scan.nextInt();
+                y = scan.nextInt();
+            }
+            int xstr = 4 * x + 1;
+            int ystr = 2 * y + 1;
+            if (simb[xstr][ystr] != ' ') {
+                System.out.println("Место занято, введите по-нормальному!");
+                x = scan.nextInt();
+                y = scan.nextInt();
+            }
 
 
-            } else {
+            for (int i = 1; i <= 5; i++) {
+                for (int q = 1; q <= 9; q++) {
+                    if (i == 2 || i == 4) {
 
-                if (q == 3 || q == 7) {
-                    simb[q][i] = '|';
+                        simb[q][i] = '-';
 
-                } else {
 
-                    if(simb[q][i] == ' ') {
-                        simb[q][i] = ' ';
+                    } else {
+
+                        if (q == 3 || q == 7) {
+                            simb[q][i] = '|';
+
+                        } else {
+
+                            if (simb[q][i] == ' ') {
+                                simb[q][i] = ' ';
+                            }
+
+
+                        }
+
                     }
 
-
                 }
 
             }
+            if (turn % 2 == 0) {
+                simb[14][14] = 'X';
+            } else {
+                simb[14][14] = 'O';
+            }
 
-        }
-
-    }
-    if (turn % 2==0) {
-         simb[14][14] = 'X';
-    } else {
-         simb[14][14] = 'O';
-    }
-
-    simb[xstr][ystr] = simb[14][14];
-    for (int i = 1; i <= 5; i++) {
-        for (int q = 1; q <= 9; q++) {
-            System.out.print(simb[q][i]);
-        }
-        System.out.println();
-    }
+            simb[xstr][ystr] = simb[14][14];
+            for (int i = 1; i <= 5; i++) {
+                for (int q = 1; q <= 9; q++) {
+                    System.out.print(simb[q][i]);
+                }
+                System.out.println();
+            }
 
 
-    //по вертикали
-    
-        for (int q = 0; q <= 2; q++) {
+            //по вертикали
+
+            for (int q = 0; q <= 2; q++) {
+                for (int i = 0; i <= 1; i++) {
+                    if (simb[4 * q + 1][2 * i + 1] == simb[4 * q + 1][2 * i + 3] & simb[4 * q + 1][2 * i + 1] != ' ' & simb[4 * q + 1][2 * i + 3] != ' ') {
+                        c = c + 1;
+                        if (c == 2) {
+                            game = true;
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i <= 2; i++) { //по горизонтали
+                for (int q = 0; q <= 1; q++) {
+                    if (simb[4 * q + 1][2 * i + 1] == simb[4 * q + 5][2 * i + 1] & simb[4 * q + 1][2 * i + 1] != ' ' & simb[4 * q + 5][2 * i + 1] != ' ') {
+                        c = c + 1;
+                        if (c == 2) {
+                            game = true;
+                        }
+                    }
+                }
+            }
+            int q=0;
             for (int i = 0; i <= 1; i++) {
-           if(simb[4*q+1][2*i+1]==simb[4*q+1][2*i+3] & simb[4*q+1][2*i+1]!=' '& simb[4*q+1][2*i+3]!=' '){
-                c =c+1;
-                if(c==2){
-                    game=true;
-                }
+
+                    if (simb[4 * q + 1][2 * i + 1] == simb[4 * q + 5][2 * i + 3] & simb[4 * q + 1][2 * i + 1] != ' ' & simb[4 * q + 5][2 * i + 3] != ' ') {
+                        c = c + 1;
+                        if (c == 2) {
+                            game = true;
+                        }
+                    }
+                q=q+1;
+            }
+            q=0;
+            for (int i = 0; i <= 1; i++) {
+
+                    if (simb[4 *q + 1][5-2*i] == simb[4 *q+5][3-2*i] &  simb[4 *q + 1][5-2*i]!= ' ' &  simb[4 *q+5][3-2*i]!= ' ') {
+                        c = c + 1;
+                        if (c == 2) {
+                            game = true;
+                        }
+                    }
+                q=q+1;
+            }
+            turn = turn + 1;
+           
+            if (turn == 9) {
+                System.out.println("Ничья");
+                game = true;
             }
         }
-    }
-    for (int i = 0; i <= 2; i++) { //по горизонтали
-        for (int q = 0; q <= 1; q++) {
-            if(simb[4*q+1][2*i+1]==simb[4*q+5][2*i+1] & simb[4*q+1][2*i+1]!=' '& simb[4*q+5][2*i+1]!=' '){
-                c =c+1;
-                if(c==2){
-                    game=true;
-                }
-            }
-        }
-    }
-    for (int i = 0; i <= 1; i++) {
-        for (int q = 0; q <= 1; q++) {
-            if(simb[4*q+1][2*i+1]==simb[4*q+5][2*i+3] & simb[4*q+1][2*i+1]!=' ' & simb[4*q+5][2*i+3]!=' '){
-                c =c+1;
-                if(c==2){
-                    game=true;
-                }
-            }
-        }
-    }
-    for (int i = 0; i <= 1; i++) {
-        for (int q = 0; q <= 1; q++) {
-            if(simb[4*(2-q)+1][2*(2-i)+1]==simb[4*(2-q)+5][2*(2-i)+3] & simb[4*(2-q)+1][2*(2-i)+1]!=' '& simb[4*(2-q)+5][2*(2-i)+3]!=' '){
-                c =c+1;
-                if(c==2){
-                    game=true;
-                }
-            }
-        }
-    }
-    turn = turn + 1;
-    if(turn==9){
-        System.out.println("Ничья");
-        game=true;
-    }
-}
     }
     }
